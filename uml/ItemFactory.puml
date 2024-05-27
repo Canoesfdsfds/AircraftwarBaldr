@@ -1,0 +1,31 @@
+@startuml ItemFactory
+
+abstract class ItemFactory
+{
+    + {abstract} CreateItem(int locationX, int locationY, int speedX, int speedY):BaseItem
+}
+
+class BoomItemFactory
+{
+    + CreateItem(int locationX, int locationY, int speedX, int speedY):BaseItem
+}
+
+class HPupItemFactory
+{
+    + CreateItem(int locationX, int locationY, int speedX, int speedY):BaseItem
+}
+
+class PowerUpItemFactory
+{
+    + CreateItem(int locationX, int locationY, int speedX, int speedY):BaseItem
+}
+
+class SpPowerUpItemFactory
+{
+    + CreateItem(int locationX, int locationY, int speedX, int speedY):BaseItem
+}
+
+ItemFactory <|-- BoomItemFactory
+ItemFactory <|-- HPupItemFactory
+ItemFactory <|-- PowerUpItemFactory
+ItemFactory <|-- SpPowerUpItemFactory

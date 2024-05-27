@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch",
+            "request": "launch",
+            "mainClass": "Launch",
+            "projectName": "AircraftwarBaldr_2e2bc0b9"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "AircraftWar-base_cd025fdf"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch",
+            "request": "launch",
+            "mainClass": "Launch",
+            "projectName": "AircraftWar-base_cd025fdf"
+        },
+        {
+            "type": "java",
+            "name": "EndPanel",
+            "request": "launch",
+            "mainClass": "edu.hitsz.GUI.EndPanel",
+            "projectName": "AircraftWar-base_cd025fdf"
+        },
+        {
+            "type": "java",
+            "name": "StartPanel",
+            "request": "launch",
+            "mainClass": "edu.hitsz.GUI.StartPanel",
+            "projectName": "AircraftWar-base_cd025fdf"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "edu.hitsz.application.Main",
+            "projectName": "AircraftWar-base_cd025fdf"
+        }
+    ]
+}

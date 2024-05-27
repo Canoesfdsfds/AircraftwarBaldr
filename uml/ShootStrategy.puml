@@ -1,0 +1,113 @@
+@startuml ShootStrategy
+
+interface ShootStrategy
+{
+    + {abstract} shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+
+class DirectShootStrategy
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. DirectShootStrategy
+
+class DirectShootStrategyHero
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. DirectShootStrategyHero
+
+class NoneShootStrategy
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. NoneShootStrategy
+
+class NoneShootStrategyHero
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. NoneShootStrategyHero
+
+class RingShootStrategy
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. RingShootStrategy
+
+class RingShootStrategyHero
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. RingShootStrategyHero
+
+class ScatterShootStrategy
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. ScatterShootStrategy
+
+class ScatterShootStrategyHero
+{
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+ShootStrategy <|.. ScatterShootStrategyHero
+
+class BossAircraftFactory
+{
+    + createAircraft((int locationX, int locationY, int speedX, int speedY, int hp): AbstractAircraft
+}
+BossAircraftFactory ..> RingShootStrategy
+
+class Elite2EnemyFactory
+{
+    + createAircraft((int locationX, int locationY, int speedX, int speedY, int hp): AbstractAircraft
+}
+Elite2EnemyFactory ..> ScatterShootStrategy
+
+class EliteEnemyFactory
+{
+    + createAircraft((int locationX, int locationY, int speedX, int speedY, int hp): AbstractAircraft
+}
+EliteEnemyFactory ..> DirectShootStrategy
+
+class HeroAircraftFactory
+{
+    + createAircraft((int locationX, int locationY, int speedX, int speedY, int hp): AbstractAircraft
+}
+HeroAircraftFactory ..> DirectShootStrategyHero
+
+class MobEnemyFactory
+{
+    + createAircraft((int locationX, int locationY, int speedX, int speedY, int hp): AbstractAircraft
+}
+MobEnemyFactory ..> NoneShootStrategy
+
+class Game
+{
+    + game()
+}
+Game ..> DirectShootStrategy
+Game ..> DirectShootStrategyHero
+Game ..> RingShootStrategy
+Game ..> RingShootStrategyHero
+Game ..> ScatterShootStrategy
+Game ..> ScatterShootStrategyHero
+Game ..> NoneShootStrategy
+Game ..> NoneShootStrategyHero
+
+abstract class AbstractAircraft
+{
+    + ShootStrategy ShootStrategy
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + setShootStrategy(ShootStrategy shootStrategy): void
+    + shoot(AbstractAircraft aircraft, int power): List<BaseBullet>
+}
+AbstractAircraft o--> ShootStrategy
+
+BossAircraftFactory --> AbstractAircraft
+Elite2EnemyFactory --> AbstractAircraft
+EliteEnemyFactory --> AbstractAircraft
+MobEnemyFactory --> AbstractAircraft
+HeroAircraftFactory --> AbstractAircraft
+Game --> AbstractAircraft

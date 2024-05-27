@@ -1,0 +1,56 @@
+@startuml Observer
+
+interface Observer
+{
+    + {abstract} update_bomb(): void
+}
+
+class MobObserver
+{
+    - mobenemy: MobEnemy
+    + MobObserver(MobEnemy mobEnemy)
+    + update_bomb():void
+}
+
+class Elite1Observer
+{
+    - eliteEnemy: EliteEnemy
+    + Elite1Observer(EliteEnemy eliteEnemy)
+    + update_bomb(): void
+}
+
+class Elite2Observer
+{
+    - elite2Enemy: Elite2Enemy
+    + Elite2Observer(Elite2Enemy: elite2Enemy)
+    + update_bomb(): void
+}
+
+class EnemyBulletObserver
+{
+    - enemyBullet: EnemyBullet
+    + EnemyBulletObserver(EnemyBullet enemyBullet)
+    + update_bomb(): void
+}
+
+class BombOB
+{
+    - observerList: List<observer>
+    + add_observer(Observer observer):void
+    + remove_observer(Observer observer): void
+    + notifyAllobserver():void
+    + get_bomb():void
+}
+
+class Game
+{
+    + {static} bombOB: BombOB
+    + Game()
+}
+
+Observer <|.. MobObserver
+Observer <|.. Elite1Observer
+Observer <|.. Elite2Observer
+Observer <|.. EnemyBulletObserver
+BombOB o--> Observer
+Game ..> BombOB

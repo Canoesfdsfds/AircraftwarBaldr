@@ -1,0 +1,175 @@
+@startuml flyingObject
+'https://plantuml.com/class-diagram
+
+abstract class AbstractFlyingObject
+{
+    # locationX:int
+    # locationY:int
+    # speedX:int
+    # speedY:int
+    # image:BufferedImage
+    # width:int
+    # height:int
+    # isValid:boolean
+
+    + AbstractFlyingObject(int locationX, int locationY, int speedX, int speedY)
+    + forward():void
+    + crash(AbstractFlyingObject flyingObject):boolean
+    + setLocation(double locationX, double locationY):void
+    + getLocationX():int
+    + getLocationY():int
+    + getSpeedY():int
+    + getImage():BufferedImage
+    + getWidth():int
+    + getHeight():int
+    + notValid():boolean
+    + vanish():void
+}
+abstract class AbstractAircraft
+{
+	# maxHp:int
+    # hp:int
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + decreaseHp(int decrease):void
+    + getHp():int
+    + {abstract} shoot():List<BaseBullet>
+    - shootStrategy: ShootStrategy
+ }
+
+abstract class OwnAircraft
+{
+    + OwnAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+}
+
+AbstractAircraft <|-- OwnAircraft
+
+class HeroAircraft {
+    - {static} instance:HeroAircraft
+    - {static} lock:Object
+    - shootNum:int
+    - power:int
+    - direction:int
+    - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + {static} getInstance(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + HPup(int):void
+    + Powerup(int):void
+}
+
+OwnAircraft <|-- HeroAircraft
+
+abstract class EnemyAircraft
+{
+    + EnemyAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+}
+
+AbstractAircraft <|-- EnemyAircraft
+
+class MobEnemy {
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    - mobObserver: MobObserver
+}
+EnemyAircraft <|-- MobEnemy
+
+class EliteEnemy{
+    - shootNum:int
+    - power: int
+    - direction int
+    + EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + fall():List<BaseItem>
+    - elite1Observer: Elite1Observer
+}
+EnemyAircraft <|-- EliteEnemy
+
+class Elite2Enemy{
+    - shootNum:int
+    - power: int
+    - direction int
+    + Elite2Enemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + fall():List<BaseItem>
+    - elite2Observer: Elite2Observer
+}
+EnemyAircraft <|-- Elite2Enemy
+
+class BossAircraft{
+    - shootNum:int
+    - power: int
+    - direction int
+    + BossAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + fall():List<BaseItem>
+}
+EnemyAircraft <|-- BossAircraft
+
+abstract class BaseBullet
+{
+    - power:int
+    + BaseBullet(int locationX, int locationY, int speedX, int speedY, int power)
+    + forward():void
+	+ getPower():int
+}
+
+class HeroBullet {
+    + HeroBullet(int locationX, int locationY,
+     int speedX, int speedY, int power)
+}
+
+class EnemyBullet {
+    + EnemyBullet(int locationX, int locationY,
+     int speedX, int speedY, int power)
+    - enemyBulletObserver: EnemyBulletObserver
+}
+
+abstract class BaseItem
+{
+    + BaseItem(int locationX, int locationY, int speedX, int speedY)
+    + forward():void
+    + {abstract} make_influence(HeroAircraft heroAircraft, int data):void
+}
+AbstractFlyingObject <|-- BaseItem
+
+class BoomItem
+{
+    + BoomItem(int locationX, int locationY, int speedX, int speedY)
+    + make_influence(HeroAircraft heroAircraft, int time):void
+}
+
+class HPupItem
+{
+    + HPupItem(int locationX, int locationY, int speedX, int speedY)
+    + make_influence(HeroAircraft heroAircraft, int dhp)
+}
+
+class PowerUpItem
+{
+    + PowerUpItem(int locationX, int locationY, int speedX, int speedY)
+    + make_influence(HeroAircraft heroAircraft, int dpower):void
+}
+
+class SpPowerUpItem
+{
+    + SpPowerUpItem(int locationX, int locationY, int speedX, int speedY)
+    + make_influence(HeroAircraft heroAircraft, int dpower):void
+}
+
+BaseBullet <|-- HeroBullet
+BaseBullet <|-- EnemyBullet
+
+BaseItem <|-- BoomItem
+BaseItem <|-- HPupItem
+BaseItem <|-- PowerUpItem
+BaseItem <|-- SpPowerUpItem
+
+AbstractFlyingObject <|-- AbstractAircraft
+AbstractFlyingObject <|-- BaseBullet
+
+@enduml

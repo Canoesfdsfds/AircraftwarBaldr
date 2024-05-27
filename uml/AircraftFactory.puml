@@ -1,0 +1,55 @@
+@startuml AircraftFactory
+
+interface AircraftFactory
+{
+    + {abstract} createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+abstract class OwnAircraftFactory
+{
+    + {abstract} createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+AircraftFactory <|.. OwnAircraftFactory
+
+abstract class EnemyAircraftFactory
+{
+    + {abstract} createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+AircraftFactory <|.. EnemyAircraftFactory
+
+class EliteEnemyFactory
+{
+    + createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+EnemyAircraftFactory <|-- EliteEnemyFactory
+
+class Elite2EnemyFactory
+{
+    + createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+EnemyAircraftFactory <|-- Elite2EnemyFactory
+
+class BossAircraftFactory
+{
+    + createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+EnemyAircraftFactory <|-- BossAircraftFactory
+
+class MobEnemyFactory
+{
+    + createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+EnemyAircraftFactory <|-- MobEnemyFactory
+
+class HeroAircraftFactory
+{
+    + createAircraft(int locationX, int locationY, int speedX, int speedY, int hp):AbstractAircraft
+}
+
+OwnAircraftFactory <|-- HeroAircraftFactory

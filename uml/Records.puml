@@ -1,0 +1,43 @@
+@startuml Records
+class GameRecord
+{
+    - GameName: String
+    - GameScore: int
+    - GameDate: String
+    + GameRecord(String GameName, int GameScore, String GameDate)
+    + getGameName(): String
+    + getGameScore(): int
+    + getGameDate(): String
+    + setGameName(String GameName): void
+    + setGameScore(int GameScore): void
+    + setGameDate(String GameDate): void
+}
+interface RecordDao
+{
+    + {abstract} Get_All_Records(): List<GameRecord>
+    + {abstract} doAdd(GameRecord gameRecord): void
+    + {abstract} doDelete(String gamename): void
+}
+
+class RecordDaoImpl
+{
+    + RecordDaoImpl()
+    + Get_All_Records(): List<GameRecord>
+    + doAdd(GameRecord gameRecord): void
+    + doDelete(String gamename): void
+}
+RecordDao <|.. RecordDaoImpl
+RecordDaoImpl --> GameRecord
+
+class Game
+{
+    - {static} scanner: Scanner
+    - {static} recordDao: RecordDao
+    - {static} RECORDS_FILE: String
+    - {static} MAX_RECORDS: int
+    - {static} loadRecordsFromFile(): void
+    - {static} simulateEndOfGame(int score): void
+    - {static} saveGameRecord(): void
+    - {static} printLeaderboard(): void
+}
+Game ..> RecordDao

@@ -1,0 +1,58 @@
+@startuml Template
+
+abstract class AbstractBaseCreate
+{
+    + Bossindex: int
+    - {static} instance: AbstractBaseCreate
+    + grow: int 
+    + {abstract} CreateEnemy(List<EnemyAircraft> enemyAircrafts, int enemyMaxNumber, AtomicBoolean bossflag, int score, int time):void 
+    + {abstract} CreateHero(int locationX, int locationY, int speedX, int speedY, int hp):HeroAircraft
+    + update_grow(int time): void 
+    + warnGrow():void
+}
+
+class BaseCreate
+{
+    + topgrow:int
+    - {static} instance: BaseCreate
+    - {static} lock: Object
+    - BaseCreate()
+    + {static} getInstance():BaseCreate
+    + CreateEnemy(List<EnemyAircraft> enemyAircrafts, int enemyMaxNumber, AtomicBoolean bossflag, int score, int time):void
+    + CreateHero(int locationX, int locationY, int speedX, int speedY, int hp):HeroAircraft
+}
+
+class BaseCreateHard
+{
+    + topgrow:int
+    - {static} instance: BaseCreateHard
+    - {static} lock: Object
+    - BaseCreate()
+    + {static} getInstance():BaseCreate
+    + CreateEnemy(List<EnemyAircraft> enemyAircrafts, int enemyMaxNumber, AtomicBoolean bossflag, int score, int time):void
+    + CreateHero(int locationX, int locationY, int speedX, int speedY, int hp):HeroAircraft
+}
+
+class BaseCreateEasy
+{
+    + topgrow:int
+    - {static} instance: BaseCreateEasy
+    - {static} lock: Object
+    - BaseCreate()
+    + {static} getInstance():BaseCreate
+    + CreateEnemy(List<EnemyAircraft> enemyAircrafts, int enemyMaxNumber, AtomicBoolean bossflag, int score, int time):void
+    + CreateHero(int locationX, int locationY, int speedX, int speedY, int hp):HeroAircraft
+}
+
+class Game
+{
+    - aircraft_factory0: BaseCreateEasy
+    - aircraft_factory1: BaseCreate
+    - aircraft_factory2: BaseCreateHard
+    + Game()
+}
+
+AbstractBaseCreate <|-- BaseCreate
+AbstractBaseCreate <|-- BaseCreateEasy
+AbstractBaseCreate <|-- BaseCreateHard
+Game ..> AbstractBaseCreate
