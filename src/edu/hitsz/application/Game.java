@@ -1002,10 +1002,28 @@ public class Game extends JPanel {
                         //System.out.println("Vanish");
                         if(! (enemyAircraft instanceof MobEnemy))
                         {
-                            if(enemyAircraft instanceof EliteEnemy)
-                            items.addAll(((EliteEnemy)enemyAircraft).fall());
-                            else if (enemyAircraft instanceof Elite2Enemy)
-                            items.addAll(((Elite2Enemy)enemyAircraft).fall());
+                            if(enemyAircraft instanceof EliteEnemy){
+                                if(Main.mode == 2)
+                                {
+                                    if(Math.random() < 0.8)
+                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                }
+                                else
+                                {
+                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                }
+                            }
+                            else if (enemyAircraft instanceof Elite2Enemy){
+                                if(Main.mode == 2)
+                                {
+                                    if(Math.random() < 0.8)
+                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                }
+                                else
+                                {
+                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                }
+                            }
                             else if (enemyAircraft instanceof BossAircraft)
                             { 
                                 set_boss_num(false);
