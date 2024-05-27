@@ -1002,11 +1002,14 @@ public class Game extends JPanel {
                         //System.out.println("Vanish");
                         if(! (enemyAircraft instanceof MobEnemy))
                         {
+                            double ran = Math.random();
+                            //System.out.println(ran);
                             if(enemyAircraft instanceof EliteEnemy){
                                 if(Main.mode == 2)
                                 {
-                                    if(Math.random() < 0.8)
-                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                    if(ran < 0.8){
+                                        items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                    }
                                 }
                                 else
                                 {
@@ -1016,18 +1019,19 @@ public class Game extends JPanel {
                             else if (enemyAircraft instanceof Elite2Enemy){
                                 if(Main.mode == 2)
                                 {
-                                    if(Math.random() < 0.8)
-                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                    if(ran < 0.8){
+                                        items.addAll(((Elite2Enemy)enemyAircraft).fall());
+                                    }
                                 }
                                 else
                                 {
-                                    items.addAll(((EliteEnemy)enemyAircraft).fall());
+                                    items.addAll(((Elite2Enemy)enemyAircraft).fall());
                                 }
                             }
                             else if (enemyAircraft instanceof BossAircraft)
                             { 
                                 set_boss_num(false);
-                                for(int i = 0 ; i < 3 ; i++)
+                                for(int i = 0 ; i < (Main.mode == 2 ? 2 : 3) ; i++)
                                 {
                                     items.addAll(((BossAircraft)enemyAircraft).fall());
                                 }
